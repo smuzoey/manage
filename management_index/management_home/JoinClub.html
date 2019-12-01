@@ -1,0 +1,93 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>后台管理系统</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/left.js"></script>
+<link rel="stylesheet" href="css/left.css">
+<link rel="stylesheet" href="css/right.css">
+<script src="js/JoinClub.js"></script>
+</head>
+<body class="body"s>
+<div class="left">
+  <div class="div1">
+    <div class="left_top"></div>
+    <div class="div2">
+      <div class="jbsz"> </div>
+      部门管理</div>
+    <div class="div3">
+      <ul>
+        <li> 成员任免</li>
+        <li> 申请管理</li>
+        <li> 活动发布</li>
+        <li> 信息修改</li>
+      </ul>
+    </div>
+    <div class="div2">
+      <div class="xwzx"> </div>
+      社团管理</div>
+    <div class="div3">
+      <ul>
+        <li> 成员任免</li>
+        <li> 活动发布</li>
+        <li> 信息修改</li>
+        <li> 活动场地申请</li>
+      </ul>
+    </div>
+    <div class="div2">
+      <div class="zxcp"> </div>
+      社团委托</div>
+    <div class="div3">
+      <ul>
+        <li>社团任免</li>
+        <li>社团成立申请</li>
+        <li>活动场地申请批准</li>
+      </ul>
+    </div>
+    <div class="div2">
+      <div class="lmtj"> </div>
+      加入申请</div>
+    <div class="div3">
+      <ul>
+        <li onclick="add()">社团加入</li>
+      </ul>
+    </div>
+  </div>
+</div>
+	
+	
+<div class = "right">
+  <div class="right_view">
+  <div class="right_view">
+   <table id="NumThree" width="100%" border="0" cellpadding="0" cellspacing="1" class="TableBlack">
+          <tbody id = "content_show">
+            <tr>
+              <td id= "actionName" style="font-size:18pt;" colspan="2">加入社团</td>
+            </tr>
+            <tr>
+              <td >社团选择</td>
+              <td><input list="select_club" />
+                <datalist id="select_club">
+                  <option value="ACM">
+                  <option value="计协">
+                  <option value="机器人协会"> 
+                </datalist></td>
+            </tr>
+            <tr>
+              <td >部门选择</td>
+              <td><input list="select_activity" />
+                <datalist id="select_activity">
+                  <option value="软件部">
+                  <option value="硬件部"> 
+                </datalist></td>
+            </tr>
+          </tr>
+<!--		  <tr>    <button> 确认 </button> </tr>-->
+       
+          </tbody>
+          
+        </table>
+  </div>
+</div>
+</body>
+</html>

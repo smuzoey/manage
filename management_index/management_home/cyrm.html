@@ -1,0 +1,110 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>部门成员任免</title>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <script type="text/javascript" src="js/left.js"></script>
+    <link rel="stylesheet" href="css/left.css">
+    <link rel="stylesheet" href="css/right.css">
+    <script src="js/JoinClub.js"></script>
+
+</head>
+<body>
+<div class="left">
+    <div class="div1">
+        <div class="left_top"></div>
+        <div class="div2"><div class="jbsz"> </div>部门管理</div>
+        <div class="div3">
+            <ul>
+                <li> 成员任免</li>
+                <li> 申请管理</li>
+                <li> 活动发布</li>
+                <li> 信息修改</li>
+            </ul>
+        </div>
+        <div class="div2"><div class="xwzx"> </div>社团管理</div>
+        <div class="div3">
+            <ul>
+                <li> 成员任免</li>
+                <li> 活动发布</li>
+                <li> 信息修改</li>
+                <li> 活动场地申请</li>
+            </ul>
+        </div>
+        <div class="div2"><div class="zxcp"> </div>社团委托</div>
+        <div class="div3">
+            <ul>
+                <li>社团任免</li>
+                <li>社团成立申请</li>
+                <li>活动场地申请批准</li>
+            </ul>
+        </div>
+        <div class="div2"><div class="lmtj"> </div> 加入申请</div>
+        <div class="div3">
+            <ul>
+                <li onclick="add()">社团加入</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<div class = "right">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tbody>
+        <!--顶部间距-->
+        <tr class = >
+            <td width="10">&nbsp;</td>
+            <td>
+                <div id="prog" style="width: 100%; margin: 0 auto;">
+                </div>
+            </td>
+            <td width="15">&nbsp;</td>
+        </tr>
+        <tr>
+            <!--左侧空白-->
+            <td width="10">&nbsp;</td>
+            <!--内容部分-->
+            <td style="text-align: center">
+                <!--内容部分-->
+                <table id="NumThree" width="100%" border="0" cellpadding="0" cellspacing="1" class="TableBlack">
+                    <tbody id = "content_show">
+                    <tr>
+                        <td id= "actionName" style="font-size:18pt;" colspan="8">哪个部门人员任免</td>
+                    </tr>
+                    <tr>
+                        <td>序号</td>
+                        <td>姓名</td>
+                        <td>学号</td>
+                        <td>性别</td>
+                        <td>联系方式</td>
+                        <td>加入时间</td>
+                        <td>职位</td>
+                        <td>删除</td>
+                    </tr>
+                    <tr>
+                        <td id="department_uesr_no_1">1</td>
+                        <td id="department_uesr_name_1">梁杰</td>
+                        <td id="department_uesr_ID_1">201731104127</td>
+                        <td id="department_uesr_sex_1">男</td>
+                        <td id="department_uesr_phone_1">13540462017</td>
+                        <td id="department_uesr_joinTime_1">1998_2017</td>
+                        <td><input list="department_uesr_position_1" value="普通成员" style="width: 30%">
+                            <datalist id="department_uesr_position_1">
+                                <option  value="普通成员">
+                                <option value="副部长">
+                                <option value="部长">
+                            </datalist></td>
+                        <td id="department_uesr_delete"><button>删除</button></td>
+                    </tr>
+
+                    </tbody></table>
+
+            </td>
+
+            <td width="15">&nbsp;</td>
+        </tr>
+        </tbody></table>
+
+</div>
+
+</body>
+</html>
