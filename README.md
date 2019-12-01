@@ -72,6 +72,7 @@ URL: "http://localhost:8080/manage/admin_User_register" <br>
 学号和密码进行登陆
 URL: "http://localhost:8080/manage/admin_User_login"
 请求参数: uid, password
+
 ```
 {
         "uid":"201731104180",
@@ -90,6 +91,7 @@ URL: "http://localhost:8080/manage/admin_User_login"
 <h3 id = "changePwd">3.修改密码</h3>
 URL: "http://localhost:8080/manage/admin_User_changePwd"
 请求参数: uid, oldPwd, newPwd
+
 ```
 {
 	"uid":"201731104180",
@@ -110,6 +112,7 @@ URL: "http://localhost:8080/manage/admin_User_changePwd"
 <h3 id = "showInfo">4.显示个人信息</h3>
 URL:"http://localhost:8080/manage/admin_User_showInfo"
 请求参数: uid
+
 ```
 {
 	"uid":"201731104180"
@@ -136,7 +139,7 @@ URL:"http://localhost:8080/manage/admin_User_showInfo"
 
 <h3 id = "changeImg">5.修改头像</h3>
 URL:"http://localhost:8080/manage/admin_User_changeImg"
-请求参数: uid, img
+请求参数: uid, img <br>
 ```
 {
 	"uid":"201731104180",
