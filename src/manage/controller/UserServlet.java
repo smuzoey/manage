@@ -1,13 +1,16 @@
 package manage.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import manage.entity.ClubUser;
 import manage.entity.User;
 import manage.service.UserService;
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 
@@ -104,6 +107,32 @@ public class UserServlet extends BaseServlet {
 		//返回给前端
 		JSONObject json = new JSONObject();
 		json.put("flag", "true");
+		write(response, json.toString());
+	}
+	
+	/**
+	 * 返回某用户加入的社团的信息
+	 * 参数:uid
+	 * @param request
+	 * @param response
+	 */
+	public void showUserClubs(HttpServletRequest request, HttpServletResponse response) {
+		//解析参数
+		Map<String, Object> map = (Map)getJSONParameter(request);
+		String uid = (String)map.get("uid");
+		List<ClubUser> list = new UserService().showUserClubs(uid);
+		
+		//返回给前端
+		JSONArray json = new JSONArray();
+		JSONObject ClubNum = new JSONObject();
+		ClubNum.put("ClubNum", list.size());
+		json.add(ClubNum);
+		for(ClubUser c : list) {
+			JSONObject jsonObject = new JSONObject();
+			jsonObject.put("ClubUser", c);
+			json.add(c);
+		}
+		
 		write(response, json.toString());
 	}
 

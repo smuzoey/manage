@@ -184,7 +184,42 @@ public class ArticleDao {
 		}
 		return list;
 	}
-		 
 	
+	/**
+	 * 展示所有社团审核过的文章
+	 * 参数: 无
+	 * @return
+	 */
+	public List<Article> showArticles() {
+		String sql = "select * from Article;";
+		ResultSetHandler<List<Article>> rsh = new BeanListHandler<Article>(Article.class);
+		List<Article> list = null;
+		try { 
+			list = DBUtil.select(sql, rsh);
+			System.out.println("Dao.ArticleDao.showArticle 获取所有社团的文章成功");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * 展示所有社团审核通过的文章的前num个
+	 * 参数: num
+	 * @param num
+	 * @return
+	 */
+	public List<Article> showNumArticles(int num) {
+		String sql = "select * from Article order by artid desc limit ? ;";
+		ResultSetHandler<List<Article>> rsh = new BeanListHandler<Article>(Article.class);
+		List<Article> list = null;
+		try {
+			list = DBUtil.select(sql, rsh, num);
+			System.out.println("Dao.ActionDao.showNumArticles 获取审核通过的前 num 个文章展示成功");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

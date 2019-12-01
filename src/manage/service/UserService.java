@@ -1,6 +1,10 @@
 package manage.service;
 
+import java.util.List;
+
+import manage.dao.ClubDao;
 import manage.dao.UserDao;
+import manage.entity.ClubUser;
 import manage.entity.User;
 
 public class UserService {
@@ -68,7 +72,11 @@ public class UserService {
 		return true;
 	}
 	
-
+	
+	public List<ClubUser> showUserClubs(String uid) {
+		List<ClubUser> list = new ClubDao().showUserClubs(uid);
+		return list;
+	}
 
 	
 }

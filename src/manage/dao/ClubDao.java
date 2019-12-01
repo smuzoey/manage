@@ -159,5 +159,41 @@ public class ClubDao {
 		return list;
 	}
 	
+	/**
+	 * 展示所有社团
+	 * 2019-12-01 17:01
+	 * @return
+	 */
+	public List<Club> showClubs() {
+		String sql = "select * from Club;";
+		ResultSetHandler<List<Club>> rsh = new BeanListHandler<Club>(Club.class);
+		List<Club> list = null;
+		try {
+			list = DBUtil.select(sql, rsh);
+			System.out.println("Dao.ClubDao.showClubs 展示全部社团 成功");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * 展示某User参加的社团的信息
+	 * 参数: uid
+	 * @param uid
+	 * @return
+	 */
+	public List<ClubUser> showUserClubs(String uid) {
+		String sql = "select * from ClubUser where uid = ?;";
+		ResultSetHandler<List<ClubUser>> rsh = new BeanListHandler<ClubUser>(ClubUser.class);
+		List<ClubUser> list = null;
+		try {
+			list = DBUtil.select(sql, rsh, uid);
+			System.out.println("Dao.ClubDao.showUserClubs 展示某个用户加入的社团信息 成功");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 	
 }

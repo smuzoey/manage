@@ -185,18 +185,17 @@ public class ActionDao {
 	 * @param num
 	 * @return
 	 */
-	public List<Action> showActions(int num) {
+	public List<Action> showNumActions(int num) {
 		String sql = "select * from Action order by aid desc limit ? ;";
 		ResultSetHandler<List<Action>> rsh = new BeanListHandler<Action>(Action.class);
 		List<Action> list = null;
 		try {
 			list = DBUtil.select(sql, rsh, num);
-			System.out.println("Dao.ActionDao.showActions 展示成功");
+			System.out.println("Dao.ActionDao.showNumActions 展示成功");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
 		return list;
-		
 	}
 	
 	/**
@@ -212,6 +211,24 @@ public class ActionDao {
 		try { 
 			list = DBUtil.select(sql, rsh, cid);
 			System.out.println("Dao.ActionDao.selectVerifyByCid 根据cid获取全部审核活动成功");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * 展示全部社团的审核通过的活动
+	 * 所需参数:无
+	 * @return
+	 */
+	public List<Action> showActions() {
+		String sql = "select * from Action;";
+		ResultSetHandler<List<Action>> rsh = new BeanListHandler<Action>(Action.class);
+		List<Action> list = null;
+		try {
+			list = DBUtil.select(sql, rsh);
+			System.out.println("Dao.ActionDao.showAction 展示成功");
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
