@@ -70,7 +70,9 @@ URL: "http://localhost:8080/manage/admin_User_register" <br>
 
 <h3 id = "login">2. 登陆</h3>
 学号和密码进行登陆
+
 URL: "http://localhost:8080/manage/admin_User_login"
+
 请求参数: uid, password
 
 ```
@@ -89,7 +91,9 @@ URL: "http://localhost:8080/manage/admin_User_login"
 </br>
 
 <h3 id = "changePwd">3.修改密码</h3>
+
 URL: "http://localhost:8080/manage/admin_User_changePwd"
+
 请求参数: uid, oldPwd, newPwd
 
 ```
@@ -111,8 +115,8 @@ URL: "http://localhost:8080/manage/admin_User_changePwd"
 
 <h3 id = "showInfo">4.显示个人信息</h3>
 URL:"http://localhost:8080/manage/admin_User_showInfo"
-请求参数: uid
 
+请求参数: uid
 ```
 {
 	"uid":"201731104180"
@@ -139,7 +143,9 @@ URL:"http://localhost:8080/manage/admin_User_showInfo"
 
 <h3 id = "changeImg">5.修改头像</h3>
 URL:"http://localhost:8080/manage/admin_User_changeImg"
-请求参数: uid, img <br>
+
+请求参数: uid, img
+
 ```
 {
 	"uid":"201731104180",
@@ -158,12 +164,14 @@ URL:"http://localhost:8080/manage/admin_User_changeImg"
 
 <h3 id = "showUserClubs">展示某用户加入社团的信息</h3>
 URL: "http://localhost:8080/manage/admin_User_showUserClubs"
+
 请求参数: uid
 ```
 {
 "uid":"201731104180"
 }
 ```
+
 返回参数: cid, did, joinTime, position,\position, uid
 ```
 [
@@ -184,6 +192,7 @@ URL: "http://localhost:8080/manage/admin_User_showUserClubs"
 
 <h3 id = "changeInfo">1. 修改部门信息</h3>
 URL: "http://localhost:8080/manage/admin_Department_changeInfo"
+
 所需参数: did, dname, dintro
 ```
 {
@@ -203,6 +212,7 @@ URL: "http://localhost:8080/manage/admin_Department_changeInfo"
 
 <h3 id = "showDepartmentUser">2. 显示部门所有成员信息</h3>
 URL: "http://localhost:8080/manage/admin_Department_showDepartmentUser"
+
 所需参数: did
 ```
 {
@@ -232,6 +242,7 @@ URL: "http://localhost:8080/manage/admin_Department_showDepartmentUser"
 
 <h3 id = "showDepartmentInfo">3. 显示部门信息</h3>
 URL: "http://localhost:8080/manage/admin_Department_showDepartmentInfo"
+
 所需参数: did
 ```
 {
@@ -254,6 +265,7 @@ URL: "http://localhost:8080/manage/admin_Department_showDepartmentInfo"
 
 <h3 id = "addVerifyArticle">4. 提交审核的文章</h3>
 URL: "http://localhost:8080/manage/admin_Department_addVerifyArticle"
+
 所需参数: cid(社团号), uid(作者), content, title
 ```
 {
@@ -263,6 +275,7 @@ URL: "http://localhost:8080/manage/admin_Department_addVerifyArticle"
 	"title":"Atitle"
 }
 ```
+
 返回参数
 ```
 {
@@ -273,6 +286,7 @@ URL: "http://localhost:8080/manage/admin_Department_addVerifyArticle"
 
 <h3 id = "addVerifyAction">5. 提交审核的活动</h3>
 URL:"http://localhost:8080/manage/admin_Department_addVerifyAction",
+
 所需参数: aname(活动名称), cid(社团号), aintro, aimg, startTime, endTime
 ```
 {
@@ -298,6 +312,7 @@ URL:"http://localhost:8080/manage/admin_Department_addVerifyAction",
 
 <h3 id = "addDepartment">1. 添加部门</h3>
 URL:"http://localhost:8080/manage/admin_Club_addDepartment"
+
 所需参数: dname, cid, dintro
 ```
 {
@@ -306,6 +321,7 @@ URL:"http://localhost:8080/manage/admin_Club_addDepartment"
 	"dintro":"aaaaaaaaaaaaaaaaa"
 }
 ```
+
 返回参数
 ```
 {
@@ -316,6 +332,7 @@ URL:"http://localhost:8080/manage/admin_Club_addDepartment"
 
 <h3 id = "addUser">2. 添加成员</h3>
 URL:"http://localhost:8080/manage/admin_Club_addUser"
+
 所需参数: uid, cid, did, position
 ```
 {
@@ -336,6 +353,7 @@ URL:"http://localhost:8080/manage/admin_Club_addUser"
 
 <h3 id = "changePosition">3. 修改成员职位</h3>
 URL:"http://localhost:8080/manage/admin_Club_changePosition",
+
 所需参数: uid, cid, did, position
 ```
 {
@@ -356,6 +374,7 @@ URL:"http://localhost:8080/manage/admin_Club_changePosition",
 
 <h3 id = "changeCintro">4. 修改社团简介</h3>
 URL:"http://localhost:8080/manage/admin_Club_changeCintro",
+
 所需参数: cid, cintro
 ```
 {
@@ -374,6 +393,7 @@ URL:"http://localhost:8080/manage/admin_Club_changeCintro",
 
 <h3 id = "showDepartmens">5. 展示社团的全部部门</h3>
 URL:"http://localhost:8080/manage/admin_Club_showDepartments"
+
 所需参数: cid
 ```
 {
@@ -398,6 +418,7 @@ URL:"http://localhost:8080/manage/admin_Club_showDepartments"
 
 <h3 id = "showClubUser">6. 显示此社团全部成员</h3>
 URL:"http://localhost:8080/manage/admin_Club_showClubUser"
+
 所需参数: cid
 ```
 {
@@ -426,6 +447,7 @@ URL:"http://localhost:8080/manage/admin_Club_showClubUser"
 
 <h3 id = "showClubInfo">7. 显示社团信息</h3>
 URL:"http://localhost:8080/manage/admin_Club_showClubInfo"
+
 所需参数: cid
 ```
 {
@@ -449,6 +471,7 @@ URL:"http://localhost:8080/manage/admin_Club_showClubInfo"
 
 <h3 id = "showVerifyActions">8. 展示此社团所有的审核活动</h3>
 URL:"http://localhost:8080/manage/admin_Club_showVerifyActions"
+
 所需参数: cid
 ```
 {
@@ -478,6 +501,7 @@ URL:"http://localhost:8080/manage/admin_Club_showVerifyActions"
 
 <h3 id = "showVerifyArticles">9. 展示此社团所有的审核文章</h3>
 URL:"http://localhost:8080/manage/admin_Club_showVerifyArticles"
+
 所需参数: cid
 ```
 {
@@ -539,6 +563,7 @@ URL:"http://localhost:8080/manage/admin_Club_showVerifyArticles"
 
 <h3 id = "agreeAction">10. 审核通过某活动</h3>
 URL: "http://localhost:8080/manage/admin_Club_agreeAction",
+
 所需参数: aid, aname, cid, aintro, aImg, startTime, endTime
 ```
 {
@@ -561,6 +586,7 @@ URL: "http://localhost:8080/manage/admin_Club_agreeAction",
 
 <h3 id = "agreeArticle">11. 审核通过某文章</h3>
 URL: "http://localhost:8080/manage/admin_Club_agreeArticle",
+
 所需参数: artid, cid, uid, content, title
 ```
 {
@@ -571,6 +597,7 @@ URL: "http://localhost:8080/manage/admin_Club_agreeArticle",
 	"title":"Atitle",
 }
 ```
+
 返回参数
 ```
 {
@@ -586,6 +613,7 @@ URL: "http://localhost:8080/manage/admin_Club_agreeArticle",
 
 <h3 id = "addClub">1. 添加社团</h3>
 URL:"http://localhost:8080/manage/admin_Root_addClub"
+
 所需参数: cname, chariman, vicechairman, cintro
 ```
 {
@@ -607,7 +635,9 @@ URL:"http://localhost:8080/manage/admin_Root_addClub"
 
 <h3 id = "showClubs">2.展示所有社团信息</h3>
 URL: "http://localhost:8080/manage/admin_Root_showClubs"
+
 所需参数: 无
+
 返回参数: size(Club个数), Club[buildTime, chairman, cid, cintro, cname, vicechairman]
 ```
 [
@@ -631,7 +661,9 @@ URL: "http://localhost:8080/manage/admin_Root_showClubs"
 
 <h3 id = "showArticles">3.展示所有社团审核通过的文章</h3>
 URL: "http://localhost:8080/manage/admin_Root_showArticles"
+
 所需参数: 无
+
 返回参数: size(文章个数), Article[Artid, cid, content, createTime, title,uid] 
 ```
 [
@@ -672,12 +704,14 @@ URL: "http://localhost:8080/manage/admin_Root_showArticles"
 
 <h3 id = "showNumArticles">4. 展示所有社团审核通过的文章的前 num 篇</h3>
 URL: "http://localhost:8080/manage/admin_Root_showNumArticles"
+
 所需参数: num
 ```
 {
 	"num":1
 }
 ```
+
 返回参数: size(文章个数), Article[Artid, cid, content, createTime, title,uid]
 ```
 [
@@ -710,7 +744,9 @@ URL: "http://localhost:8080/manage/admin_Root_showNumArticles"
 
 <h3 id = "showActions">5. 展示所有社团审核通过的活动</h3>
 URL: "http://localhost:8080/manage/admin_Root_showActions"
+
 所需参数: 无
+
 返回参数: size, Action[aImg, aid, aintro, aname, cid, endTime, startTime]
 ```
 [
@@ -734,6 +770,7 @@ URL: "http://localhost:8080/manage/admin_Root_showActions"
 <br>
 <h3 id = "showNumActions">6. 展示所有社团审核通过的活动的前 num 个</h3>
 URL: "http://localhost:8080/manage/admin_Root_showNumActions"
+
 所需参数: num
 ```
 {
