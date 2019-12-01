@@ -44,7 +44,7 @@
 <h3 id = "register">1. 注册</h3>
 请求头: Content-Type：application/json; <br>
 URL: "http://localhost:8080/manage/admin_User_register" <br>
-请求参数:  uid, phone, uname, IDCard, faculty, className, heardImg, password, sex<br>
+请求参数:  uid, phone, uname, IDCard, faculty, className, heardImg, password, sex <br>
 ```
 {
             "uid":"201731104180",
