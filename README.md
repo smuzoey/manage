@@ -1,8 +1,10 @@
+</br>
 # manage
 社团管理系统后端, 目前接口信息如下
 
 </br>
 <h2 id = "catalog">目录</h2>
+
 
 - [User](#User)
     - [注册](#register)
@@ -10,6 +12,8 @@
     - [修改密码](#changePwd)
     - [修改头像](#changeImg)
     - [展示某人加入社团的信息](#showUserClubs)
+    - [用户申请加入某社团,某部门](#applyForJoinClub)
+    - [提交创建社团的申请](#applyToCreateClub)
 
 - [Department](#Department)
     - [修改部门信息](#changeInfo)
@@ -17,6 +21,8 @@
     - [显示部门信息](#showDepartmentInfo)
     - [提交审核文章](#addVerifyArticle)
     - [提交审核活动](#addVerifyAction)
+    - [展示此部门审核表](#showUserVerify)
+    - [提交修改职位申请: 未写]
 
 - [Club](#Club)
     -  [添加部门](#addDepartment)
@@ -30,6 +36,11 @@
     -  [显示此社团所有审核通过的文章](#showVerifyArticles)
     -  [审核通过某活动](#agreeAction)
     -  [审核通过某文章](#agreeArticle)
+    -  [同意添加某成员加入本社团某部门](#agreeUserVerify)
+    -  [拒绝添加某成员加入本社团某部门](#disagreeUserVerify)
+    -  [展示此社团审核表](#ClubShowUserVerify)
+    -  [8同意修改职位 未写]
+    -  [9拒绝修改职位 未写]
   
 - [Root](#Root)
     - [添加社团](#addClub)
@@ -38,6 +49,16 @@
     - [展示所有审核通过的文章的前num个](#showNumArticles)
     - [展示所有审核通过的活动](#showActions)
     - [展示所有审核通过的活动的前num个](#showNumActions)
+    - [展示创建社团的请求](#showClubVerify)
+    - [同意社团创立申请](#agreeClubVerify)
+    - [拒绝创建创立申请](#disagreeClubVerify)
+
+<br>
+<br>
+
+------------------------------------------------------------------
+
+
 
 <h2 id="User">User</h2>
 
@@ -67,8 +88,9 @@ URL: "http://localhost:8080/manage/admin_User_register"
         "flag": "true"
 }
 ```
-</br>
 
+</br>
+</br>
 
 <h3 id = "login">2. 登陆</h3>
 学号和密码进行登陆
@@ -90,6 +112,8 @@ URL: "http://localhost:8080/manage/admin_User_login"
      "flag": true
 }
 ```
+
+</br>
 </br>
 
 <h3 id = "changePwd">3.修改密码</h3>
@@ -112,6 +136,8 @@ URL: "http://localhost:8080/manage/admin_User_changePwd"
     "flag": true
 }
 ```
+
+</br>
 </br>
 
 
@@ -142,6 +168,7 @@ URL:"http://localhost:8080/manage/admin_User_showInfo"
 }
 ```
 </br>
+</br>
 
 <h3 id = "changeImg">5.修改头像</h3>
 URL:"http://localhost:8080/manage/admin_User_changeImg"
@@ -161,10 +188,11 @@ URL:"http://localhost:8080/manage/admin_User_changeImg"
     "flag": "true"
 }
 ```
+
 </br>
 </br>
 
-<h3 id = "showUserClubs">展示某用户加入社团的信息</h3>
+<h3 id = "showUserClubs">6. 展示某用户加入的所有社团的信息</h3>
 URL: "http://localhost:8080/manage/admin_User_showUserClubs"
 
 请求参数: uid
@@ -174,7 +202,7 @@ URL: "http://localhost:8080/manage/admin_User_showUserClubs"
 }
 ```
 
-返回参数: cid, did, joinTime, position,\position, uid
+返回参数: cid, did, joinTime, position,uid
 ```
 [
     {
@@ -189,6 +217,55 @@ URL: "http://localhost:8080/manage/admin_User_showUserClubs"
     }
 ]
 ```
+
+</br>
+</br>
+
+<h3 id = "applyForJoinClub">7. 申请加入某社团某部门</h3>
+URL: http://localhost:8080/manage/admin_User_applyForJoinClub
+
+请求参数: uid, cid, did
+```
+{
+	"uid":"20173110481",
+	"cid":1,
+	"did":1
+}
+```
+
+返回参数: flag
+```
+{
+    "flag": "true"
+}
+```
+<br>
+<br>
+
+<h3 id = "applyToCreateClub">8. 申请创建一个社团</h3>
+URL: http://localhost:8080/manage/admin_User_applyToCreateClub
+
+请求参数: cname, chariman(cid), cintro
+```
+{
+	"cname":"Swing",
+	"chairman":"20173114182",
+	"cintro":"swing!"
+}
+```
+
+返回参数:
+```
+{
+    "flag": "true"
+}
+```
+
+
+<br>
+<br>
+
+-----------------------------------------------
 
 <h2 id = "Department">Department</h2>
 
@@ -307,8 +384,39 @@ URL:"http://localhost:8080/manage/admin_Department_addVerifyAction",
     "flag": "true"
 }
 ```
+
 </br>
 </br>
+
+<h3 id = "showUserVerify"> 6. 展示社团部门申请加入表</h3>
+URL: http://localhost:8080/manage/admin_Department_showUserVerify
+
+所需参数: did
+```
+{
+	"did":1
+}
+```
+
+返回参数
+```
+[  
+    {
+        "VerifyClubUser": {
+            "cid": 1,
+            "did": 1,
+            "joinTime": null,
+            "position": "",
+            "uid": "20173110481"
+        }
+    }
+]
+```
+
+</br>
+</br>
+
+---------------------------------------------------------------
 
 <h2 id = "Club">Club</h2>
 
@@ -419,7 +527,7 @@ URL:"http://localhost:8080/manage/admin_Club_showDepartments"
 </br>
 
 <h3 id = "showClubUser">6. 显示此社团全部成员</h3>
-URL:"http://localhost:8080/manage/admin_Club_showClubUser"
+URL: http://localhost:8080/manage/admin_Club_showClubUser
 
 所需参数: cid
 ```
@@ -606,10 +714,83 @@ URL: "http://localhost:8080/manage/admin_Club_agreeArticle",
     "falg": "true"
 }
 ```
+
 </br>
 </br>
 
+<h3 id = "agreeUserVerify">12. 同意用户加入社团的请求</h3>
+URL: http://localhost:8080/manage/admin_Club_agreeUserVerify
 
+所需参数:
+```
+{
+	"uid":"201731104181",
+	"cid":1,
+	"did":1
+}
+```
+
+返回参数:
+```
+{
+    "falg": "true"
+}
+```
+
+</br>
+</br>
+
+<h3 id = "disagreeUserVerify">13. 拒绝用户加入社团的请求</h3>
+URL: http://localhost:8080/manage/admin_Club_disagreeUserVerify
+
+所需参数:
+```
+{
+	"uid":"201731104183",
+	"cid":1,
+	"did":1
+}
+```
+
+返回参数:
+```
+{
+    "falg": "true"
+}
+```
+
+</br>
+</br>
+
+<h3 id = "ClubShowUserVerify">14. 展示此社团的全部加入申请表</h3>
+URL: http://localhost:8080/manage/admin_Club_showUserVerify
+
+所需参数: cid
+```
+{
+	"cid":2
+}
+```
+
+返回参数:
+```
+[
+    {
+        "VerifyClubUser": {
+            "cid": 2,
+            "did": 4,
+            "joinTime": null,
+            "position": "",
+            "uid": "201731104187"
+        }
+    }
+]
+```
+
+
+</br>
+</br>
+----------------------------------------------
 
 <h2 id = "Root">Root</h2>
 
@@ -768,8 +949,10 @@ URL: "http://localhost:8080/manage/admin_Root_showActions"
     }
 ]
 ```
+
 <br>
 <br>
+
 <h3 id = "showNumActions">6. 展示所有社团审核通过的活动的前 num 个</h3>
 URL: "http://localhost:8080/manage/admin_Root_showNumActions"
 
@@ -798,4 +981,75 @@ URL: "http://localhost:8080/manage/admin_Root_showNumActions"
         }
     }
 ]
+```
+
+<br>
+<br>
+
+<h3 id = "showClubVerify">7. 展示创建社团的申请表</h3>
+URL: http://localhost:8080/manage/admin_Root_showClubVerify
+
+所需参数: 无
+```
+{
+}
+```
+
+返回参数: 
+```
+[
+    {
+        "VerifyClub": {
+            "bulidTime": null,
+            "chairman": "20173114182",
+            "cid": 1,
+            "cintro": "swing!",
+            "cname": "Swing",
+            "vicechairman": ""
+        }
+    }
+]
+```
+
+<br>
+<br>
+
+<h3 id = "agreeClubVerify">8. 同意用户创建社团的申请</h3>
+URL: http://localhost:8080/manage/admin_Root_agreeClubVerify
+
+所需参数: chairman, cid, cintro, cname
+```
+{
+            "chairman": "20173114182",
+            "cid": 1,
+            "cintro": "swing!",
+            "cname": "Swing"
+}
+```
+
+返回参数:
+```
+{
+    "falg": "true"
+}
+```
+
+<h3 id = "disagreeClubVerify">8. 不同意用户创建社团的申请</h3>
+URL: http://localhost:8080/manage/admin_Root_disagreeClubVerify
+
+所需参数: chairman, cid, cintro, cname
+```
+{
+            "chairman": "201731104180",
+            "cid": 3,
+            "cintro": "studing",
+            "cname": "Study"
+}
+```
+
+返回参数:
+```
+{
+    "falg": "true"
+}
 ```
