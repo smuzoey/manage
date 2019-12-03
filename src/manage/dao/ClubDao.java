@@ -1,5 +1,6 @@
 package manage.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.dbutils.ResultSetHandler;
@@ -8,6 +9,7 @@ import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import manage.entity.Club;
 import manage.entity.ClubUser;
+import manage.service.RootService;
 import manage.util.DBUtil;
 import manage.util.DateUtil;
 
@@ -196,4 +198,91 @@ public class ClubDao {
 		return list;
 	}
 	
+	/**
+	 * 展示加入社团的申请表
+	 * 参数: cid
+	 * @param cid
+	 * @return
+	 */
+	public List<ClubUser> showUserVerify(int cid) {
+		String sql = "select * from VerifyClubUser where cid=?;";
+		ResultSetHandler<List<ClubUser>> rsh = new BeanListHandler<ClubUser>(ClubUser.class);
+		List<ClubUser> list = null;
+		try {
+			list = DBUtil.select(sql, rsh, cid);
+			System.out.println("dao.ClubDao.showUserVerify 成功, 展示社团的申请加入表");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * 创建社团申请
+	 * 参数:club.class
+	 * @param c
+	 */
+	public void addVerify(Club c) {
+		String sql = "insert into VerifyClub(cname,chairman,vicechairman,cintro,buildTime) values(?,?,?,?,?);";
+		try {
+			DBUtil.update(sql, c.getCname(),c.getChairman(),c.getVicechairman(),c.getCintro(),DateUtil.dtot(new Date()));
+			System.out.println("Dao.ClubDao.addVerify 成功添加");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 展示创建社团的申请表
+	 * @return
+	 */
+	public List<Club> showClubVerify() {
+		String sql = "select * from VerifyClub;";
+		ResultSetHandler<List<Club>> rsh = new BeanListHandler<Club>(Club.class);
+		List<Club> list = null;
+		try {
+			list = DBUtil.select(sql, rsh);
+			System.out.println("dao.ClubDao.showClubVerify 成功, 展示创建社团的申请表");
+			System.out.println(list);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
+	
+	/**
+	 * 同意用户添加社团
+	 * 参数: club.class
+	 * @param c
+	 */
+	public void agreeClubVerify(Club c) {
+		//调用Rott的添加社团的功能
+		new RootService().addClub(c);
+		
+		//从审核表中删除
+		String sql = "delete from VerifyClub where cid=?;";
+		try {
+			DBUtil.update(sql, c.getCid());
+			System.out.println("Dao.Club.agreeVerify 同意用户创建社团");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	/**
+	 * 不同意用户添加社团
+	 * 参数: club.class
+	 * @param c
+	 */
+	public void disagreeClubVerify(Club c) {
+		
+		//从审核表中删除
+		String sql = "delete from VerifyClub where cid=?;";
+		try {
+			DBUtil.update(sql, c.getCid());
+			System.out.println("Dao.Club.disagreeVerify 不同意用户创建社团");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
 }

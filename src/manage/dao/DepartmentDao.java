@@ -119,5 +119,23 @@ public class DepartmentDao {
 		}
 		return d;
 	}
+	
+	/**
+	 * 展示用户申请加入表
+	 * @param did
+	 * @return
+	 */
+	public List<ClubUser> showUserVerify(int did) {
+		String sql = "select * from VerifyClubUser where did=?;";
+		ResultSetHandler<List<ClubUser>> rsh = new BeanListHandler<ClubUser>(ClubUser.class);
+		List<ClubUser> list = null;
+		try {
+			list = DBUtil.select(sql, rsh, did);
+			System.out.println("dao.DepartmentDao.showUserVerify 成功, 展示申请加入表");
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+	}
 
 }

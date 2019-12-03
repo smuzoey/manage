@@ -1,6 +1,7 @@
 package manage.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import manage.dao.ActionDao;
@@ -115,4 +116,21 @@ public class ClubService {
 		new ArticleDao().deleteVerify(a.getArtid());
 	}
 
+	//同意加入某社团
+	public void agreeJoinClub(ClubUser cu) {
+		Date d = new Date();
+		cu.setJoinTime(d);
+		new ClubUserDao().agreeUserVerify(cu);
+	}
+	
+	//拒绝加入某社团
+	public void disagreeJoinClub(ClubUser cu) {
+		new ClubUserDao().disagreeUserVerify(cu);
+	}
+	
+	//展示社团审核表
+	public List<ClubUser> showUserVerify(int cid) {
+		List<ClubUser> list = new ClubDao().showUserVerify(cid);
+		return list;
+	}
 }

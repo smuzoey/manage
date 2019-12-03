@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import manage.entity.Action;
 import manage.entity.Article;
+import manage.entity.ClubUser;
 import manage.entity.Department;
 import manage.entity.User;
 import manage.service.DepartmentService;
@@ -109,6 +110,27 @@ public class DepartmentServlet extends BaseServlet {
 		JSONObject json = new JSONObject();
 		json.put("flag", "true");
 		write(response, json.toString());
+	}
+	
+	/**
+	 * 展示用户申请加入社团的申请表
+	 * @param request
+	 * @param response
+	 */
+	public void showUserVerify(HttpServletRequest request, HttpServletResponse response) {
+		//解析参数
+		Map<String, Object> map = (Map) getJSONParameter(request);
+		int did = (int)map.get("did");
+		List<ClubUser> list = new DepartmentService().showVerifyUser(did);
+		
+		//将全部申请信息信息返回给前端
+		JSONArray jsonArray = new JSONArray();
+		for(ClubUser cu : list) {
+			JSONObject json = new JSONObject();
+			json.put("VerifyClubUser", cu);
+			jsonArray.add(json);
+		}
+		write(response, jsonArray.toString());
 	}
 	
 }

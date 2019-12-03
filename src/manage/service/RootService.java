@@ -48,6 +48,22 @@ public class RootService {
 		return list;
 	}
 	
+	// 展示创建社团的全部申请表
+	public List<Club> showClubVerify() {
+		List<Club> list = new ClubDao().showClubVerify();
+		return list;
+	}
+	
+	// 同意创建
+	public void agreeCreateClub(Club c) {
+		new ClubDao().agreeClubVerify(c);
+	}
+	
+	// 不同意创建
+	public void disagreeCreateClub(Club c) {
+		new ClubDao().disagreeClubVerify(c);
+	}
+	
 	
 	
 	

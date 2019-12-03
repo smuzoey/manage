@@ -159,6 +159,59 @@ public class RootServlet extends BaseServlet {
 			json.add(jsonObject);
 		}
 		write(response, json.toString());
-		
 	}
+	
+	/**
+	 * 返回创建社团的申请表
+	 * @param request
+	 * @param response
+	 */
+	public void showClubVerify(HttpServletRequest request, HttpServletResponse response) {
+		List<Club> list = new RootService().showClubVerify();
+		
+		//将全部申请信息信息返回给前端
+		JSONArray jsonArray = new JSONArray();
+		for(Club c : list) {
+			JSONObject json = new JSONObject();
+			json.put("VerifyClub", c);
+			jsonArray.add(json);
+		}
+		write(response, jsonArray.toString());
+	}
+	
+	/**
+	 * 同意创建社团
+	 * @param request
+	 * @param response
+	 */
+	public void agreeClubVerify(HttpServletRequest request, HttpServletResponse response) {
+		//解析参数
+		Map<String, Object> map = (Map) getJSONParameter(request);
+		Club c = (Club) getBean(map, "Club");
+		new RootService().agreeCreateClub(c);
+		
+		//返回前端
+		JSONObject json = new JSONObject();
+		json.put("falg", "true");
+		write(response, json.toString());
+	}
+	
+	/**
+	 * 不同意创建社团
+	 * @param request
+	 * @param response
+	 */
+	public void disagreeClubVerify(HttpServletRequest request, HttpServletResponse response) {
+		//解析参数
+		Map<String, Object> map = (Map) getJSONParameter(request);
+		Club c = (Club) getBean(map, "Club");
+		new RootService().disagreeCreateClub(c);
+		
+		//返回前端
+		JSONObject json = new JSONObject();
+		json.put("falg", "true");
+		write(response, json.toString());
+	}
+	
+	
 }

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import manage.entity.Club;
 import manage.entity.ClubUser;
 import manage.entity.User;
 import manage.service.UserService;
@@ -135,5 +136,40 @@ public class UserServlet extends BaseServlet {
 		
 		write(response, json.toString());
 	}
+	
+	
+	/**
+	 * 申请加入某社团
+	 * 参数: uid, cid, did
+	 * @param request
+	 * @param response
+	 */
+	public void applyForJoinClub(HttpServletRequest request, HttpServletResponse response) {
+		//解析参数
+		Map<String, Object> map = (Map)getJSONParameter(request);
+		ClubUser cu = (ClubUser)getBean(map, "ClubUser");
+		new UserService().applyForJoinClub(cu);
+		//返回前端
+		JSONObject json = new JSONObject();
+		json.put("flag", "true");
+		write(response, json.toString());
+	}
+	
+	/**
+	 * 用户申请创建社团
+	 * @param request
+	 * @param response
+	 */
+	public void applyToCreateClub(HttpServletRequest request, HttpServletResponse response) {
+		//解析参数
+		Map<String, Object> map = (Map)getJSONParameter(request);
+		Club club = (Club)getBean(map, "Club");
+		new UserService().applyToCreateClub(club);
+		//返回前端
+		JSONObject json = new JSONObject();
+		json.put("flag", "true");
+		write(response, json.toString());
+	}
+
 
 }

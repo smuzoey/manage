@@ -3,7 +3,9 @@ package manage.service;
 import java.util.List;
 
 import manage.dao.ClubDao;
+import manage.dao.ClubUserDao;
 import manage.dao.UserDao;
+import manage.entity.Club;
 import manage.entity.ClubUser;
 import manage.entity.User;
 
@@ -72,10 +74,31 @@ public class UserService {
 		return true;
 	}
 	
-	
+	/**
+	 * 展示用户的加入的所有社团的信息
+	 * @param uid
+	 * @return
+	 */
 	public List<ClubUser> showUserClubs(String uid) {
 		List<ClubUser> list = new ClubDao().showUserClubs(uid);
 		return list;
+	}
+	
+
+	/**
+	 * 用户申请加入某社团
+	 * @param cu
+	 */
+	public void applyForJoinClub(ClubUser cu) {
+		new ClubUserDao().addVerify(cu);
+	}
+	
+	/**
+	 * 申请创建一个社团
+	 * @param c
+	 */
+	public void applyToCreateClub(Club c) {
+		new ClubDao().addVerify(c);
 	}
 
 	
